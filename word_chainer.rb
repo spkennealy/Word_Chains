@@ -42,8 +42,14 @@ class Word_Chainer
         end 
 
         build_path(target)
-        @path.reverse! << target
-        @path
+
+        if @path.empty?
+            puts "No correct path"
+        else 
+            @path.reverse! << target
+            p @path
+            @path = []
+        end 
     end
 
     def explore_current_words(target)
@@ -71,4 +77,5 @@ class Word_Chainer
 end 
 
 words = Word_Chainer.new("dictionary.txt")
-p words.run("duck", "ruby") # ==> ["duck", "dunk", "dune", "rune", "rube", "ruby"]
+words.run("duck", "ruby") # ==> ["duck", "dunk", "dune", "rune", "rube", "ruby"]
+words.run("market", "carpet") # ==> ["market", "marker", "barker", "barter", "carter", "carper", "carpet"]
